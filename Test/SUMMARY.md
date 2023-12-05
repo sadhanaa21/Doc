@@ -9,3 +9,7 @@
   * [Accounting](data-model/accounting.md)
   * [Facility](data-model/facility.md)
   * [Order](data-model/order.md)
+  * [Party](data-model/party.md)
+  * [Product](data-model/product.md)
+  * [Sales](data-model/sales.md)
+  * [Shipment](data-model/shipment.md)
