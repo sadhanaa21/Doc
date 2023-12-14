@@ -1,23 +1,33 @@
 # Implementation
 
-* **View used**
-  1. ShipmentAndItemAndReceipt
-* In the service, the first entity-find has been done on the **ShipmentAndItemAndReceipt** view to fetch the eligible **Shipment** using the below conditions that have been used in the service
-  1. shipmentId: if the shipment ID has passed in the service, then from the view, shipment receipts will be fetched only for that shipment ID
-  2. shipmentTypeId: if the shipment type ID has passed in the service, then the shipment receipts will be fetched from the view as per that shipment type ID.
-  3. shipmentStatusId: if the shipment status ID has passed in the service, then the shipment receipts will be fetched from the view as per that shipment status ID.
-  4. sinceReceivedDate: if the sinceReceivedDate has passed in the service, then the eligible shipment receipts will be fetched from the view after the sinceReceivedDate.
-     1. **NOTE:** sinceReceivedDate corresponds to the field datetimeReceived of the ShipmentReceipt entity.
-  5. productStoreIds: The service will generate the feed as per the below scenario
-     1. If only one value has passed in the parameter productStoreIds, then the feed will be generated as per that product Store ID, which means the generated feed will be for a specific brand.
-     2. If nothing has passed in the parameter productStoreIds or if there will be more than one value in the list, then the default prefix 'HOTWAX' will be set from the property added in the MoquiConf file.
-  6. **NOTE:** This entity-find will fetch details of shipment level for eligible Shipment Receipt Feed since the select-field includes only the shipment level fields.
-* The second entity find has been done on the **ShipmentAndItemAndReceipt** view to fetch the eligible **shipment items** using the below conditions that have been used in the service.
-  1. shipmentId: to fetch the details of that order ID that is existing in the list of first entity-find.
-  2. **NOTE:** This entity-find will fetch the details of shipment items since the select-field includes only the shipment item-level fields.
-* Third-time entity find has been done on the **ShipmentAndItemAndReceipt** view to fetch the eligible **Shipment Receipts** using the below conditions that have been used in the service. Since the select-field includes the receipt level fields.
-  1. **NOTE:**
-     1. The conditions on shipmentId and shipmentItemsSeqId are included here to fetch the shipment item receipt for only those shipment IDs and shipment Item Seq IDs
-     2. Here, for each shipment item, will fetch the valid Shipment Receipts so that the correct quantity i.e. sum(qtyAccepted) can be evaluated in the next entity-find using these receipt IDs.
-     3. **NOTE:** It is important to fetch the valid Shipment Receipts so that the quantity already sent as part of earlier feeds should not be sent again.
-* Fourth-time entity-find has been done on the **ShipmentAndItemAndReceipt** view to fetch the total quantity, i.e., sum (qtyAccepted), of the eligible shipment receipts.
+**View Utilized:** ShipmentAndItemAndReceipt
+
+In the service, the ShipmentAndItemAndReceipt view is employed for fetching relevant data. Here's a breakdown of the entity-finds within the service:
+
+1.  **Eligible Shipment Retrieval:** The initial entity-find fetches eligible shipments using specific conditions:
+
+    * `shipmentId`: If provided in the service, the view fetches shipment receipts exclusively for that shipment ID.
+    * `shipmentTypeId`: If the shipment type ID is provided, the service fetches shipment receipts corresponding to that type.
+    * `shipmentStatusId`: If the shipment status ID is provided, the service fetches shipment receipts based on that status.
+    * `sinceReceivedDate`: If the `sinceReceivedDate` is provided, the service retrieves eligible shipment receipts after that date.
+
+    **Note:** `sinceReceivedDate` aligns with the `datetimeReceived` field in the ShipmentReceipt entity.
+
+    * `productStoreIds`: The service generates the feed based on the following:
+      * If only one value is provided in `productStoreIds`, the feed is generated for that specific product store ID, representing a particular brand.
+      * If `productStoreIds` is not provided or if there are multiple values, the default prefix 'HOTWAX' is set using the property in the MoquiConf file.
+
+    **Note:** This entity-find fetches shipment-level details for eligible Shipment Receipt Feed since the select field includes only shipment-level fields.
+2.  **Fetching Eligible Shipment Items:** The second entity-find retrieves eligible shipment items based on the conditions:
+
+    * `shipmentId`: To fetch details for the order ID existing in the list obtained from the first entity-find.
+
+    **Note:** This entity-find fetches shipment item-level details since the select field includes only shipment item-level fields.
+3.  **Fetching Eligible Shipment Receipts:** The third entity-find fetches eligible shipment receipts using conditions:
+
+    * `shipmentId` and `shipmentItemsSeqId`: Included to fetch shipment item receipts for specific shipment IDs and shipment Item Seq IDs.
+
+    Here, for each shipment item, valid Shipment Receipts are fetched. This ensures accurate quantity evaluation (sum of `qtyAccepted`) in the next entity-find using these receipt IDs.
+
+    **Note:** It is crucial to fetch valid Shipment Receipts to prevent resending quantities already included in earlier feeds.
+4. **Total Quantity Calculation:** The fourth entity-find calculates the total quantity (`sum(qtyAccepted)`) of eligible shipment receipts. This aggregation ensures an accurate representation of the cumulative accepted quantity in the feed.
