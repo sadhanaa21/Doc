@@ -1,6 +1,10 @@
-# Behaviour
+---
+description: >-
+  The service generates the Transfer Order Receipts Feed based on the following
+  scenarios:
+---
 
-The service generates the Transfer Order Receipts Feed based on the following scenarios:
+# Behaviour
 
 1. **All Items Received:**
    * If a shipment has multiple items, and all are received before the next feed generation, the feed file will include the shipment and all its item shipment receipt details.

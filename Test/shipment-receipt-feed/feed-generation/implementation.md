@@ -1,8 +1,14 @@
+---
+description: Shipment Receipt Feed implementation details -
+---
+
 # Implementation
 
 **View Utilized:** ShipmentAndItemAndReceipt
 
-In the service, the ShipmentAndItemAndReceipt view is employed for fetching eligible shipments. The first entity-find uses conditions like `shipmentId`, `shipmentTypeId`, `shipmentStatusId`, and `sinceReceivedDate`. If a specific shipment ID is provided, the view fetches receipts exclusively for that ID. Similarly, it caters to specified shipment types or status IDs and considers a given date for receipt eligibility. The `sinceReceivedDate` aligns with the `datetimeReceived` field in the ShipmentReceipt entity.
+The first entity-find uses conditions like `shipmentId`, `shipmentTypeId`, `shipmentStatusId`, and `sinceReceivedDate`. If a specific shipment ID is provided, the view fetches receipts exclusively for that ID.&#x20;
+
+Similarly, it caters to specified shipment types or status IDs and considers a given date for receipt eligibility. This `sinceReceivedDate` aligns with the `datetimeReceived` field in the Shipment Receipt entity.
 
 The service also utilizes `productStoreIds` for feed generation. If only one value is provided, the feed is tailored to that product store ID, representing a particular brand. Otherwise, if no values or multiple values are present, the default prefix 'HOTWAX' is set. This entity-find focuses on fetching shipment-level details for the eligible Shipment Receipt Feed, considering only shipment-level fields.
 
