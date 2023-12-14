@@ -4,12 +4,13 @@ description: Prepare Shipments Receipt Feed from OMS -
 
 # Requirement
 
-1. The generated feed will be in JSON format.
-2. The OMS JSON will be shipment-wise, each shipment will contain information about its shipment items and its receipt details.
-3. This feed file will be used to get details about the Shipments Receipt.
-4. To generate the feed, in Moqui, a service job has been configured that will run as per the scheduled time, generate the feed, and keep the feed on the SFTP.
-5. The below parameters have been configured for the service job
-   1. **NOTE:** Added the values of parameters here that have been used to fetch and generate the feed for eligible purchase order shipment receipt feed
+The generated feed is in JSON format. The OMS JSON is organized shipment-wise, containing information about each shipment's items and receipt details. This feed is used to obtain shipment receipt details.
+
+To generate the feed in Moqui, a service job is configured. It runs on a schedule, creates the feed, and stores it on the SFTP.
+
+The following parameters are configured for the service job:
+
+NOTE: The values of parameters used to fetch and generate the feed for eligible purchase order shipment receipts are included.
 
 | **Parameter Name**    | **Description**                                                                                                                                                          | **Example Value**                                                                                                                                                                                                                                                                                                   |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
