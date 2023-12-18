@@ -6,6 +6,8 @@ description: Steps involved in feed generation -
 
 {% tabs %}
 {% tab title="Working" %}
+As per the below scenarios, the service will generate the Shipment Receipts Feed -
+
 ### **All Items Received:**
 
 If a shipment has multiple items, and all are received before the next feed generation, the feed file will include the shipment and all its item shipment receipt details.
