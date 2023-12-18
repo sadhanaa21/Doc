@@ -12,10 +12,29 @@ The process to approve eligible orders will be managed by NiFi. The entire workf
 
 1. Order Attribute for NetSuite exported Orders
 2. Order Attribute for orders with RX products
+   1. For this&#x20;
 3. Order Attribute for orders without RX products
 4. Approve Order
 
 To establish OrderAttributes, a CSV file will be generated, serving as input for the HC job to produce or import corresponding data. Subsequently, eligible orders for the approval feed will be retrieved, and the HC job will be used to approve these orders.
+
+{% swagger method="post" path="" baseUrl="https://{source.sftp.host}/api/service/updateOrderItemShipGroup" summary="Updates the order items ship group" %}
+{% swagger-description %}
+
+{% endswagger-description %}
+
+{% swagger-parameter in="body" name="orderId" required="true" %}
+
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="shipGroupSeqId" required="true" %}
+
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="facilityId" required="true" %}
+
+{% endswagger-parameter %}
+{% endswagger %}
 
 <details>
 
