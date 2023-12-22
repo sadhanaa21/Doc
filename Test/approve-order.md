@@ -17,7 +17,7 @@ The process to approve eligible orders will be managed by NiFi. The entire workf
 3. Order Attribute for orders without RX products
 4. Approve Order
 
-The API used is -
+**The API used is -**
 
 ```
 https://krewe-uat.hotwax.io/api/service/updateOrderItemShipGroup
