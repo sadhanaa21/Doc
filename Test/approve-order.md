@@ -11,30 +11,19 @@ An order qualifies for approval only when it possesses both the NETSUITE\_ORDER\
 The process to approve eligible orders will be managed by NiFi. The entire workflow is divided into six segments:
 
 1. Order Attribute for NetSuite exported Orders
-2. Order Attribute for orders with RX products
-   1. For this&#x20;
+2.  Order Attribute for orders with RX products
+
+    All orders having RX products need to be moved to facility 1818, using an API call.
 3. Order Attribute for orders without RX products
 4. Approve Order
 
+The API used is -
+
+```
+https://krewe-uat.hotwax.io/api/service/updateOrderItemShipGroup
+```
+
 To establish OrderAttributes, a CSV file will be generated, serving as input for the HC job to produce or import corresponding data. Subsequently, eligible orders for the approval feed will be retrieved, and the HC job will be used to approve these orders.
-
-{% swagger method="post" path="" baseUrl="https://{source.sftp.host}/api/service/updateOrderItemShipGroup" summary="Updates the order items ship group" %}
-{% swagger-description %}
-
-{% endswagger-description %}
-
-{% swagger-parameter in="body" name="orderId" required="true" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="shipGroupSeqId" required="true" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="facilityId" required="true" %}
-
-{% endswagger-parameter %}
-{% endswagger %}
 
 <details>
 
@@ -42,14 +31,14 @@ To establish OrderAttributes, a CSV file will be generated, serving as input for
 
 **All process groups except **_**Order Attribute for order having RX products**_
 
-1. All the process group except **Order Attribute for order having RX products** have exact same flow but the SQL query differs.
+1. All the process groups except **Order Attribute for orders having RX products** have the same flow but the SQL query differs.
 2. The **ExecuteSQLRecord** processor is employed to execute a SQL query, resulting in the generation of a CSV file according to the defined Avro schema.
 3. The subsequent processor is **RouteOnAttribute**, where a check is performed to determine whether the flow file contains any records.
 4. Following that, the filename is updated to the required format using the **UpdateAttribute** processor.
 5. The final step involves transferring the file to the SFTP location using the **PutSFTP** processor.
 6. These kept files will be consumed via HC to create order attributes.
 
-**Process group Order Attribute for all 319 POS Orders having RX products -**
+**Process group Order Attribute for all Orders having RX products -**
 
 1. The **ExecuteSQLRecord** processor is utilized to execute a SQL query.
 2. The flow is then split into individual JSON documents using the **Split JSON** Processor. These JSON documents serve as the request body for an API call.
