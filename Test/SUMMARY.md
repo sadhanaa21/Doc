@@ -5,4 +5,3 @@
   * [Feed Generation](shipment-receipt-feed/feed-generation.md)
   * [Mapping](shipment-receipt-feed/mapping.md)
   * [Generated JSON](shipment-receipt-feed/generated-json.md)
-* [Approve Order](approve-order.md)
