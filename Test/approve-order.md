@@ -8,7 +8,7 @@ An order qualifies for approval only when it possesses both the NETSUITE\_ORDER\
 
 ## Implementation
 
-The process to approve eligible orders will be managed by NiFi. The entire workflow is divided into six segments:
+The process to approve eligible orders will be managed by NiFi. The entire workflow is divided into four segments:
 
 1. Order Attribute for NetSuite exported Orders
 2.  Order Attribute for orders with RX products
@@ -20,7 +20,7 @@ The process to approve eligible orders will be managed by NiFi. The entire workf
 **The API used is -**
 
 ```
-https://krewe-uat.hotwax.io/api/service/updateOrderItemShipGroup
+https://{domain}/api/service/updateOrderItemShipGroup
 ```
 
 To establish OrderAttributes, a CSV file will be generated, serving as input for the HC job to produce or import corresponding data. Subsequently, eligible orders for the approval feed will be retrieved, and the HC job will be used to approve these orders.
