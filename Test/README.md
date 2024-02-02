@@ -12,7 +12,7 @@ However, because different brands may have unique requirements, the approval pro
 
 The NetsuiteItemLineId is generated and associated with OMS order items during a specific synchronization step after the sales order has been created in Netsuite. This synchronization step is crucial for mapping and aligning the order line items in OMS with their corresponding line item IDs in Netsuite. Verification of the presence of the NetsuiteItemLineId order item attribute is necessary. If all items of an order possess the NetsuiteItemLineId, the NETSUITE\_ORDER\_EXPORTED order attribute will be created.
 
-## **Implementation Flow:**
+### **Implementation Flow:**
 
 The approval process for eligible orders will be implemented by NiFi. This workflow is divided into creating order attributes in the OMS database and then approving the eligible orders.&#x20;
 
