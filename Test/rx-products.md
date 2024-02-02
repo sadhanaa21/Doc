@@ -1,6 +1,6 @@
 # RX Products
 
-If an order includes RX products (prescription), it should be transferred to a specific facility. This process involves utilizing the OMS API for updating order items' ship group, specifically the updateOrderItemShipGroup service. Once the order is successfully moved to a required facility, an order attribute named RX\_PRODUCT\_VERIFIED will be created. Importantly, this attribute is also created directly for non-RX products without any additional updates.
+If an order includes RX products (prescription), it should be transferred to a specific facility. This process involves utilizing the OMS API for updating order items' ship group, specifically the updateOrderItemShipGroup service. Once the order is successfully moved to a required facility, an order attribute named RX\_PRODUCT\_VERIFIED will be created. Importantly, this attribute is also created directly for non-RX products without any additional updates. This workflow is implemented in NiFi.
 
 ### NiFi Flow:
 
