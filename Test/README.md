@@ -1,5 +1,11 @@
 # Approve Order
 
+The OOTB order approval flow of OMS is not used, because certain checks and data need to be verified and updated before the order is approved. So, a custom order approval flow is implemented in NiFi which will perform the extra validations based on the custom requirements and keep the file ready to approve orders for OMS. This file will be read by OMS the orders in the file will be marked as approved. For this, the orders are in CREATED status in OMS until the orders are approved.
+
+### Requirement
+
+The order should be approved only when the Order has mandated NETSUITE\_ORDER\_EXPORTED order attribute. We can add some brand-specific checks as well and if that check fulfills we can order attributes for that. If all the required checks are passed and order attributes exist then only we approve the orders.
+
 ### **NetsuiteItemLineId Attribute:**&#x20;
 
 The NetsuiteItemLineId is generated and associated with OMS order items during a specific synchronization step after the sales order has been created in Netsuite. This synchronization step is crucial for mapping and aligning the order line items in OMS with their corresponding line item IDs in Netsuite. Verification of the presence of the NetsuiteItemLineId order item attribute is necessary. If all items of an order possess the NetsuiteItemLineId, the NETSUITE\_ORDER\_EXPORTED order attribute will be created.
