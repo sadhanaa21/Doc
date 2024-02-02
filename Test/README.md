@@ -27,8 +27,8 @@ The approval process for eligible orders will be implemented by NiFi. This workf
 
 The NiFi setup employs the same set of processors for both flows – one for creating order attributes and the other for approving orders. The sequence for these processors is as follows:
 
-* The **ExecuteSQLRecord** processor is used to execute distinct SQL queries, generating CSV files based on the defined Avro schema for creating order attributes.
-* The subsequent processor, **RouteOnAttribute**, checks whether the flow file contains any records.
-* The filename is then updated to the required format using the **UpdateAttribute** processor.
-* The final step involves transferring the file to the SFTP location using the **PutSFTP** processor.
-* The stored files will be accessed via HC to create order attributes.
+1. The **ExecuteSQLRecord** processor is used to execute distinct SQL queries, generating CSV files based on the defined Avro schema for creating order attributes.
+2. The subsequent processor, **RouteOnAttribute**, checks whether the flow file contains any records.
+3. The filename is then updated to the required format using the **UpdateAttribute** processor.
+4. The final step involves transferring the file to the SFTP location using the **PutSFTP** processor.
+5. The stored files will be accessed via HC to create order attributes.
