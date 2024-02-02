@@ -2,7 +2,7 @@
 
 The OOTB order approval flow of OMS is not used, because certain checks and data need to be verified and updated before the order is approved. So, a custom order approval flow is implemented in NiFi which will perform the extra validations based on the custom requirements and keep the file ready to approve orders for OMS. This file will be read by OMS the orders in the file will be marked as approved. For this, the orders are in CREATED status in OMS until the orders are approved.
 
-### Requirement
+### Requirement:
 
 The process mandates that an order is approved only when it possesses the essential attribute 'NETSUITE\_ORDER\_EXPORTED.'. This attribute confirms that the order has been properly exported to the NetSuite system.&#x20;
 
