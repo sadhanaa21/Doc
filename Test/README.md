@@ -4,9 +4,7 @@ The OOTB order approval flow of OMS is not used, because certain checks and data
 
 ### Requirement:
 
-The process mandates that an order is approved only when it possesses the essential attribute 'NETSUITE\_ORDER\_EXPORTED.'. This attribute confirms that the order has been properly exported to the NetSuite system.&#x20;
-
-However, because different brands may have unique requirements, the approval process includes extra checks for brand-specific conditions. So, while the basic NetSuite approval demands the 'NETSUITE\_ORDER\_EXPORTED' attribute, it can also consider additional brand-related criteria. To get the thumbs up, an order must meet all these conditions, ensuring a thorough and adaptable approval process that suits both generic and brand-specific needs in NetSuite order processing.
+The process mandates that an order is approved only when it possesses the essential attribute 'NETSUITE\_ORDER\_EXPORTED.'. This attribute confirms that the order has been properly exported to the NetSuite system. However, because different brands may have unique requirements, the approval process includes extra checks for brand-specific conditions. So, while the basic NetSuite approval demands the 'NETSUITE\_ORDER\_EXPORTED' attribute, it can also consider additional brand-related criteria. To get the thumbs up, an order must meet all these conditions, ensuring a thorough and adaptable approval process that suits both generic and brand-specific needs in NetSuite order processing.
 
 ### **NetsuiteItemLineId Attribute:**&#x20;
 
