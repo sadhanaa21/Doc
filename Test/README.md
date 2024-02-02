@@ -23,7 +23,7 @@ The approval process for eligible orders will be implemented by NiFi. This workf
 
     `hotwax/ApproveOrders`
 
-### NiFi Flow -
+### NiFi Flow:
 
 The NiFi setup employs the same set of processors for both flows – one for creating order attributes and the other for approving orders. The sequence for these processors is as follows:
 
