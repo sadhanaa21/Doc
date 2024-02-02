@@ -4,7 +4,9 @@ The OOTB order approval flow of OMS is not used, because certain checks and data
 
 ### Requirement
 
-The order should be approved only when the Order has mandated NETSUITE\_ORDER\_EXPORTED order attribute. We can add some brand-specific checks as well and if that check fulfills we can order attributes for that. If all the required checks are passed and order attributes exist then only we approve the orders.
+The process mandates that an order is approved only when it possesses the essential attribute 'NETSUITE\_ORDER\_EXPORTED.'. This attribute confirms that the order has been properly exported to the NetSuite system.&#x20;
+
+However, because different brands may have unique requirements, the approval process includes extra checks for brand-specific conditions. So, while the basic NetSuite approval demands the 'NETSUITE\_ORDER\_EXPORTED' attribute, it can also consider additional brand-related criteria. To get the thumbs up, an order must meet all these conditions, ensuring a thorough and adaptable approval process that suits both generic and brand-specific needs in NetSuite order processing.
 
 ### **NetsuiteItemLineId Attribute:**&#x20;
 
@@ -14,19 +16,12 @@ The NetsuiteItemLineId is generated and associated with OMS order items during a
 
 The approval process for eligible orders will be implemented by NiFi. This workflow is divided into creating order attributes in the OMS database and then approving the eligible orders.&#x20;
 
+1.  For creating order attributes, an SQL with required checks is executed and a CSV file is kept for the OMS job to read, which creates the order attribute. The name of the job is createUpdateOrderAttribute. The file is read from the directory -
 
+    `hotwax/ApproveOrderAttributes`
+2.  For approving orders, a CSV file containing eligible order IDs is kept on SFTP. This file is generated based on the presence of required order attributes. The OMS job consumes this file to approve orders. The file is read from the directory -
 
-For creating order attributes, an SQL with required checks is executed and a CSV file is kept for the OMS job to read, which creates the order attribute. The name of the job is createUpdateOrderAttribute. The file is read from the directory -
-
-```
-hotwax/ApproveOrderAttributes 
-```
-
-For approving orders, a CSV file containing eligible order IDs is stored on SFTP. This file is generated based on the presence of required order attributes. The OMS job consumes this file to approve orders. The file is read from the directory -
-
-```
-hotwax/ApproveOrders
-```
+    `hotwax/ApproveOrders`
 
 ### NiFi Flow -
 
